@@ -6,7 +6,8 @@ import img1 from '@/assets/white.webp';
 import img2 from '@/assets/teal.webp';
 import img3 from '@/assets/iphone-yellow.webp';
 import img4 from '@/assets/iphone-black.webp';
-// import Image from 'next/image';
+
+
 
 interface Specification {
   title: string;
@@ -152,8 +153,7 @@ export default function IPhone16ProSpecs() {
   const { scrollYProgress } = useScroll({ target: containerRef });
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  // const textY = useTransform(scrollYProgress, [0, 1], ['0%', '200%']);
-
+ 
   const phoneImages = {
     natural: img1,
     blue: img2,
@@ -183,7 +183,7 @@ const phoneImage = phoneImages[selectedColorName];
       case 'brightness':
         if (!interactive.levels) return null;
         return (
-          <div className="mt-8">
+          <div className="mt-8 font-poppins">
             <motion.h4 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -197,7 +197,7 @@ const phoneImage = phoneImages[selectedColorName];
                 <motion.button
                   key={level}
                   onClick={() => setInteractiveState(prev => ({ ...prev, [activeSection]: { brightness: index } }))}
-                  className={`px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                  className={`px-4 py-3 rounded-xl  text-sm font-semibold transition-all duration-300 ${
                    
                     (level || 0) === index
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/25'
@@ -483,65 +483,20 @@ const phoneImage = phoneImages[selectedColorName];
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
       </div>
 
-      {/* Hero Section */}
-      {/* <section className="relative h-screen flex items-center justify-center z-10">
-        <div className="text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 100, scale: 0.5 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="text-7xl md:text-9xl font-black mb-8 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
-            style={{ y: textY }}
-          >
-            iPhone 16 Pro
-          </motion.h1>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-2xl md:text-3xl text-gray-300 mb-12 font-light"
-          >
-            Complete Technical Specifications
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.3, rotateY: 180 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
-            className="relative"
-          >
-           <Image
-  src={phoneImage}
-  alt={`iPhone 16 Pro in ${selectedColorName}`}
-  width={256}
-  height={384}
-  className="w-80 h-96 mx-auto rounded-[3rem] shadow-2xl shadow-blue-500/20 object-cover"
-/>
-
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-[3rem]"
-              animate={{ opacity: [0.2, 0.4, 0.2] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
-          </motion.div>
-        </div>
-      </section> */}
-
-      {/* Navigation */}
+     
       <motion.div 
         className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-gray-800/50"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, delay: 1.5 }}
       >
-        <div className="container mx-auto px-6">
-          <div className="flex space-x-2 py-6 overflow-x-auto">
+        <div className="container mx-auto px-6 ">
+          <div className="flex space-x-2 py-6 overflow-x-auto justify-between ">
             {Object.entries(specifications).map(([key, spec], index) => (
               <motion.button
                 key={key}
                 onClick={() => setActiveSection(key)}
-                className={`px-6 py-3 rounded-xl whitespace-nowrap transition-all text-sm font-semibold border ${
+                className={`px-6 py-3 rounded-xl whitespace-nowrap transition-all cursor-pointer text-sm font-semibold border ${
                   activeSection === key
                     ? 'bg-gradient-to-r from-white to-gray-200 text-black border-white shadow-lg shadow-white/20'
                     : 'text-gray-400 hover:text-white hover:bg-gray-800/50 border-gray-700 hover:border-gray-600'
@@ -663,14 +618,14 @@ const phoneImage = phoneImages[selectedColorName];
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <motion.button
-              className="px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-2xl font-bold text-lg transition-all duration-300 shadow-lg shadow-blue-500/25 border border-blue-500/30"
-              whileHover={{ scale: 1.05, y: -3, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.4)" }}
+              className="px-10 py-4 bg-gradient-to-r cursor-pointer from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-2xl font-bold text-lg transition-all duration-300 shadow-lg shadow-blue-500/25 border border-blue-500/30"
+              whileHover={{ scale: 1.05, y: -3, boxShadow: "0 20px 40px #3B82F666" }}
               whileTap={{ scale: 0.95 }}
             >
               Buy iPhone 16 Pro
             </motion.button>
             <motion.button
-              className="px-10 py-4 border-2 border-white hover:bg-white hover:text-black rounded-2xl font-bold text-lg transition-all duration-300"
+              className="px-10 py-4 border-2 cursor-pointer border-white hover:bg-white hover:text-black rounded-2xl font-bold text-lg transition-all duration-300"
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
             >

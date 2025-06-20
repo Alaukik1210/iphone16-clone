@@ -15,15 +15,15 @@ const colors = [
     image: img1,
   },
   {
-    name: 'Blue Titanium',
+    name: 'Teal Titanium',
     value: 'blue',
-    bg: 'from-blue-400 to-blue-600',
+   bg: 'from-teal-400 to-teal-600',
     image: img2,
   },
   {
-    name: 'White Titanium',
+    name: 'Desert Titanium',
     value: 'white',
-    bg: 'from-gray-100 to-white',
+    bg: 'from-[#D7C9B4] to-[#A89F94]',
     image: img3,
   },
   {

@@ -5,10 +5,9 @@ import { Suspense, useState, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { ComponentProps } from 'react';
 
-// Generate consistent dot positions using a seeded approach
+
 const generateDotPositions = (count: number, seed: number = 42) => {
   const positions = [];
-  // Simple seeded random function for consistent results
   let random = seed;
   const seededRandom = () => {
     random = (random * 9301 + 49297) % 233280;
@@ -26,18 +25,12 @@ const generateDotPositions = (count: number, seed: number = 42) => {
 
 const DOT_POSITIONS = generateDotPositions(20);
 
-// Fix 2: Fallback iPhone model component (simple geometric shape)
-
-
-// Preload the GLB model
 useGLTF.preload('/ip16promax.glb');
 
 function IPhoneModel(props: Omit<ComponentProps<'primitive'>, 'object'>) {
   const { scene } = useGLTF('/ip16promax.glb');
   return <primitive object={scene} scale={1.5} {...props} />;
 }
-
-// Fix 3: Client-side only component to prevent hydration issues
 function ClientOnlyDots() {
   const [mounted, setMounted] = useState(false);
 
@@ -46,7 +39,7 @@ function ClientOnlyDots() {
   }, []);
 
   if (!mounted) {
-    return null; // Don't render on server
+    return null; 
   }
 
   return (
@@ -77,8 +70,8 @@ function ClientOnlyDots() {
 
 export default function IPhoneShowcase() {
   return (
-    <div className="h-screen bg-black flex flex-col items-center justify-center text-white relative overflow-hidden">
-      {/* Fixed animated background dots */}
+    <div className="h-screen bg-black font-poppins flex flex-col items-center justify-center text-white relative overflow-hidden">
+      
       <ClientOnlyDots />
       
       <motion.h1

@@ -7,7 +7,6 @@ export default function PageLoader() {
   const [progress, setProgress] = useState(0);
   const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
 
-  // Setup progress animation
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress(prev => {
@@ -21,7 +20,6 @@ export default function PageLoader() {
     return () => clearInterval(timer);
   }, []);
 
-  // Only set window dimensions in client
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setDimensions({
@@ -35,7 +33,6 @@ export default function PageLoader() {
 
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-700 to-gray-900 z-50 fixed top-0 left-0 overflow-hidden">
-      {/* Subtle animated background elements */}
       <div className="absolute inset-0">
         {dimensions &&
           [...Array(30)].map((_, i) => (
@@ -60,13 +57,9 @@ export default function PageLoader() {
           ))}
       </div>
 
-      {/* Rest of your UI remains unchanged */}
-      {/* Geometric patterns, loading text, progress bar, loader spinner, etc. */}
-
-      {/* Add everything else below here (unchanged parts) */}
-      {/* Central loading content */}
+   
       <div className="relative z-10 flex flex-col items-center space-y-12">
-        {/* Animated loading text */}
+       
         <div className="flex space-x-3">
           {letters.map((letter, index) => (
             <motion.span
@@ -103,7 +96,6 @@ export default function PageLoader() {
           ))}
         </div>
 
-        {/* Elegant separator line */}
         <motion.div
           className="w-96 h-px bg-gradient-to-r from-transparent via-amber-200 to-transparent"
           initial={{ width: 0, opacity: 0 }}
@@ -111,7 +103,6 @@ export default function PageLoader() {
           transition={{ duration: 2, delay: 1 }}
         />
 
-        {/* Progress bar */}
         <div className="flex flex-col items-center space-y-4">
           <div className="w-80 h-1 bg-gray-800 rounded-full overflow-hidden border border-gray-700">
             <motion.div
@@ -134,7 +125,6 @@ export default function PageLoader() {
           </motion.div>
         </div>
 
-        {/* Spinner */}
         <div className="relative">
           <motion.div
             className="w-16 h-16 border-2 border-gray-700 rounded-full"
@@ -154,7 +144,6 @@ export default function PageLoader() {
           />
         </div>
 
-        {/* Floating dots */}
         <div className="absolute">
           {[...Array(4)].map((_, i) => (
             <motion.div
@@ -178,7 +167,6 @@ export default function PageLoader() {
         </div>
       </div>
 
-      {/* Vignette & accents */}
       <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black opacity-30 pointer-events-none" />
       <div className="absolute top-8 left-8 w-12 h-12 border-l-2 border-t-2 border-amber-200 opacity-20" />
       <div className="absolute top-8 right-8 w-12 h-12 border-r-2 border-t-2 border-amber-200 opacity-20" />

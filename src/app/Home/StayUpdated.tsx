@@ -2,7 +2,7 @@
 //@ts-nocheck
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-
+import { HiOutlineSignal } from "react-icons/hi2";
 export default function StayUpdated() {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -48,13 +48,11 @@ export default function StayUpdated() {
 
     setIsLoading(true);
     
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     setIsLoading(false);
     setIsSubmitted(true);
     
-    // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
       setEmail('');
@@ -81,8 +79,8 @@ export default function StayUpdated() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
-      {/* Background Elements */}
+    <div className="min-h-screen font-poppins bg-gradient-to-br  from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
+      
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
           className="absolute top-1/4 left-1/4 w-96 h-96 border border-white opacity-5 rounded-full"
@@ -115,10 +113,7 @@ export default function StayUpdated() {
                   transition={{ delay: 0.2, duration: 0.6 }}
                   className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-gray-300 to-gray-500 rounded-2xl flex items-center justify-center"
                 >
-                  <div className="w-8 h-12 bg-black rounded-lg relative">
-                    <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-4 h-1 bg-gray-700 rounded-full" />
-                    <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-6 border-2 border-gray-700 rounded-full" />
-                  </div>
+                  <HiOutlineSignal size={48} className="text-gray-400" />
                 </motion.div>
 
                 <motion.h1
@@ -250,9 +245,9 @@ export default function StayUpdated() {
                   type="submit"
                   disabled={isLoading}
                   onClick={(e)=>handleSubmit(e)}
-                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
-                  whileHover={{ scale: isLoading ? 1 : 1.02 }}
-                  whileTap={{ scale: isLoading ? 1 : 0.98 }}
+                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-2xl transition-all duration-300 disabled:opacity-50  cursor-pointer disabled:cursor-not-allowed relative overflow-hidden shadow-lg shadow-blue-500/25 border border-blue-500/30"
+  whileHover={{ scale: isLoading ? 1 : 1.05, y: isLoading ? 0 : -3, boxShadow: isLoading ? undefined : "0 20px 40px #3B82F666" }}
+  whileTap={{ scale: isLoading ? 1 : 0.95 }}
                 >
                   <AnimatePresence mode="wait">
                     {isLoading ? (

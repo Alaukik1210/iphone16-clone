@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MdMenu, MdBluetooth, MdBattery90 } from "react-icons/md";
-import { SlEarphones } from "react-icons/sl";
+import { MdMenu } from "react-icons/md";
+import { SlUser } from "react-icons/sl";
 import img1 from "@/assets/iphone-black.webp";
 import img2 from "@/assets/iphone-yellow.webp";
 import img3 from "@/assets/iphone-pink.webp";
@@ -22,42 +22,41 @@ const NavbarMenu = [
 const Hero = () => {
   const [currentModel, setCurrentModel] = useState(0);
 
- const Models = [
-  {
-    id: 0,
-    name: "iPhone 16 Pro",
-    model: "A3101",
-    price: 1199,
-    originalPrice: 1399,
-    color: "#ffffff",
-    accentColor: "#cccccc",
-    features: ["A18 Bionic", "ProMotion Display", "Triple Camera"],
-    image: img1, // black
-  },
-  {
-    id: 1,
-    name: "iPhone 16",
-    model: "A3102",
-    price: 999,
-    originalPrice: 1199,
-    color: "#FFD070",
-    accentColor: "#BFA48D",
-    features: ["A18 Chip", "Super Retina XDR", "Dual Camera"],
-    image: img2, // yellow
-  },
-  {
-    id: 2,
-    name: "iPhone 16 Mini",
-    model: "A3103",
-    price: 899,
-    originalPrice: 1099,
-    color: "#F2ADDA",
-    accentColor: "#F2ADDA",
-    features: ["Compact Size", "A17 Chip", "Wireless Charging"],
-    image: img3, // pink
-  },
-];
-
+  const Models = [
+    {
+      id: 0,
+      name: "iPhone 16 Pro",
+      model: "A3101",
+      price: 1199,
+      originalPrice: 1399,
+      color: "#ffffff",
+      accentColor: "#cccccc",
+      features: ["A18 Bionic", "ProMotion Display", "Triple Camera"],
+      image: img1, // black
+    },
+    {
+      id: 1,
+      name: "iPhone 16",
+      model: "A3102",
+      price: 999,
+      originalPrice: 1199,
+      color: "#FFD070",
+      accentColor: "#BFA48D",
+      features: ["A18 Chip", "Super Retina XDR", "Dual Camera"],
+      image: img2, // yellow
+    },
+    {
+      id: 2,
+      name: "iPhone 16 Mini",
+      model: "A3103",
+      price: 899,
+      originalPrice: 1099,
+      color: "#F2ADDA",
+      accentColor: "#F2ADDA",
+      features: ["Compact Size", "A17 Chip", "Wireless Charging"],
+      image: img3, // pink
+    },
+  ];
 
   const currentProduct = Models[currentModel];
 
@@ -70,7 +69,6 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen font-poppins bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-hidden">
-      
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_white_1px,_transparent_0)] bg-[length:50px_50px]"></div>
       </div>
@@ -82,8 +80,14 @@ const Hero = () => {
       >
         {/* Logo */}
         <div>
-          <motion.img className="h-20" src={logo.src} alt="" />
-          
+          <motion.img
+            src={logo.src}
+            alt="Logo"
+            className="h-16 sm:h-20 object-contain"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+          />
         </div>
 
         {/* Desktop Menu */}
@@ -110,7 +114,7 @@ const Hero = () => {
               </li>
             ))}
 
-            {/* Earphones Button */}
+            
             <UpdateFollower
               mouseOptions={{
                 backgroundColor: "white",
@@ -120,8 +124,8 @@ const Hero = () => {
                 mixBlendMode: "difference",
               }}
             >
-              <button className="text-xl ps-14">
-                <SlEarphones />
+              <button className="text-xl ps-14 cursor-pointer">
+                <SlUser />
               </button>
             </UpdateFollower>
           </ul>
@@ -148,9 +152,7 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-            >
-             
-            </motion.div>
+            ></motion.div>
 
             {/* Main Heading */}
             <div className="space-y-4">
@@ -160,9 +162,9 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-               Build
+                Say hello to
                 <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                  for Apple Intelligence
+                  iPhone.
                 </span>
               </motion.h1>
 
@@ -172,11 +174,11 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-               Get iPhone 16 Pro from just ₹9825.00/mo. for up to 12 months with No Cost EMI and instant cashback. 
+                Get iPhone 16 Pro from just ₹9825.00/mo. for up to 12 months
+                with No Cost EMI and instant cashback.
               </motion.p>
             </div>
 
-            {/* Product Info */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentModel}
@@ -203,7 +205,6 @@ const Hero = () => {
                   </div>
                 </div>
 
-                {/* Features */}
                 <div className="flex flex-wrap justify-center lg:justify-start gap-2">
                   {currentProduct.features.map((feature, index) => (
                     <Badge
@@ -227,31 +228,13 @@ const Hero = () => {
             >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg font-semibold transition-all duration-300 transform hover:scale-105 cursor-pointer"
               >
                 Buy Now
               </Button>
             </motion.div>
-
-            {/* Quick Features */}
-            <motion.div
-              className="flex justify-center lg:justify-start space-x-8 pt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-            >
-              <div className="flex items-center space-x-2 text-gray-400">
-                <MdBluetooth className="text-blue-400" />
-                <span className="text-sm">Bluetooth 5.3</span>
-              </div>
-              <div className="flex items-center space-x-2 text-gray-400">
-                <MdBattery90 className="text-green-400" />
-                <span className="text-sm">30H Battery</span>
-              </div>
-            </motion.div>
           </motion.div>
 
-          {/* Right Content - 3D Headphones */}
           <motion.div
             className="relative flex justify-center items-center"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -259,7 +242,6 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.4 }}
           >
             <div className="relative">
-              {/* Main Headphone Display */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentModel}
@@ -304,7 +286,6 @@ const Hero = () => {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Glowing Background */}
               <motion.div
                 className="absolute inset-0 rounded-full blur-3xl scale-150 -z-10"
                 animate={{
@@ -317,9 +298,6 @@ const Hero = () => {
                 transition={{ duration: 3, repeat: Infinity }}
               />
 
-              {/* Sound Waves */}
-
-              {/* Floating Elements */}
               {[...Array(8)].map((_, i) => (
                 <motion.div
                   key={i}
@@ -342,7 +320,6 @@ const Hero = () => {
               ))}
             </div>
 
-            {/* Product Selector */}
             <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
               {Models.map((model, index) => (
                 <motion.button
@@ -366,7 +343,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Bottom Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400"
         initial={{ opacity: 0 }}
